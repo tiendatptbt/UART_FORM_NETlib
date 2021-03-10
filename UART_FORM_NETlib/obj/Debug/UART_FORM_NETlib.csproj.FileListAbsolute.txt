@@ -1,0 +1,10 @@
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\bin\Debug\UART_FORM_NETlib.exe.config
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\bin\Debug\UART_FORM_NETlib.exe
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\bin\Debug\UART_FORM_NETlib.pdb
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\obj\Debug\UART_FORM_NETlib.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\obj\Debug\UART_FORM_NETlib.Form1.resources
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\obj\Debug\UART_FORM_NETlib.Properties.Resources.resources
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\obj\Debug\UART_FORM_NETlib.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\obj\Debug\UART_FORM_NETlib.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\obj\Debug\UART_FORM_NETlib.exe
+C:\Users\Admin\source\repos\UART_FORM_NETlib\UART_FORM_NETlib\obj\Debug\UART_FORM_NETlib.pdb

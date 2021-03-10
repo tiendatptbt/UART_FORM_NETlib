@@ -19,4 +19,15 @@ namespace UART_FORM_NETlib
             Application.Run(new Form1());
         }
     }
+    static class Data
+    {
+        public static double[] CirArrayX = new double[100];
+        public static double[] CirArrayY = new double[100];
+        public static double[] CirArrayZ = new double[100];
+        public static double serialRAW ;
+        public static void method()
+        {
+
+        }
+    }
 }
