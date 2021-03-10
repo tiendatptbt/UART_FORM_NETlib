@@ -25,6 +25,8 @@ namespace UART_FORM_NETlib
         public static double[] CirArrayY = new double[100];
         public static double[] CirArrayZ = new double[100];
         public static double serialRAW ;
+        public static Int16[] data = new Int16[3];
+        public static Int16[] datatest = new Int16[3];
         public static void method()
         {
 

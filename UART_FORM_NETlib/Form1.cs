@@ -26,33 +26,25 @@ namespace UART_FORM_NETlib
             string[] ports = SerialPort.GetPortNames();
             cbCOMPORT.Items.AddRange(ports);
 
-
-
             // Set title.
             chart1.Titles.Add("Line Chart");
             chart1.ChartAreas[0].AxisX.Minimum = 0;
-            //chart1.ChartAreas[0].AxisX.Interval = 1; // Whatever you like
-
-            //// Add array data.
-            //for (int i = 0; i < 101; i++)
-            //{
-            //     Data.serialRAW[i]=0;
-            //    //chart1.Series["X"].Points.AddXY("1", "10");
-            //}
+  
 
         }
+
         private void getData()
         {
             while(true)
             {
                 //X
-                Data.CirArrayX[Data.CirArrayX.Length - 1] = Math.Round(Data.serialRAW, 0);
+                Data.CirArrayX[Data.CirArrayX.Length - 1] = Math.Round(Convert.ToDouble(Data.data[0]), 0);
                 Array.Copy(Data.CirArrayX, 1, Data.CirArrayX, 0, Data.CirArrayX.Length - 1);
                 //Y
-                Data.CirArrayY[Data.CirArrayY.Length - 1] = Math.Round(3+Data.serialRAW, 0);
+                Data.CirArrayY[Data.CirArrayY.Length - 1] = Math.Round(Convert.ToDouble(Data.data[1]), 0);
                 Array.Copy(Data.CirArrayY, 1, Data.CirArrayY, 0, Data.CirArrayY.Length - 1);
                 //Z
-                Data.CirArrayZ[Data.CirArrayZ.Length - 1] = Math.Round(5+Data.serialRAW, 0);
+                Data.CirArrayZ[Data.CirArrayZ.Length - 1] = Math.Round(Convert.ToDouble(Data.data[2]), 0);
                 Array.Copy(Data.CirArrayZ, 1, Data.CirArrayZ, 0, Data.CirArrayZ.Length - 1);
 
                 //update
@@ -131,8 +123,34 @@ namespace UART_FORM_NETlib
             //    Data.RingCounter = 0;
             //}
 
-        }
+            if(serialPort1.BytesToRead >= 7)
+            {
+                int bytes = serialPort1.BytesToRead;
+                byte[] buffer = new byte[bytes];
+                serialPort1.Read(buffer, 0, bytes);
+                if (buffer[6] == 171)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        byte temp = buffer[i * 2 + 1];
+                        buffer[i * 2 + 1] = buffer[i * 2];
+                        buffer[i * 2] = temp;
+                    }
 
+                    for (int i = 0; i < Data.data.Length; i++)
+                        Data.data[i] = BitConverter.ToInt16(buffer, i * 2);
+                }
+                else
+                {
+                   for (int i = 0; i < Data.data.Length; i++)
+                    Data.data[i] = 0;
+                }
+
+
+
+            }
+
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             Data.serialRAW++;
@@ -147,6 +165,24 @@ namespace UART_FORM_NETlib
             cpuThread = new Thread(new ThreadStart(getData));
             cpuThread.IsBackground = true;
             cpuThread.Start();
+
+            //var sevenItems = new byte[] { 0x13, 0x45, 0x73, 0x32, 0x42, 0x34, 0xab };
+
+            //if (sevenItems[6] == 171)
+            //{
+            //    for (int i = 0; i < 3; i++)
+            //    {
+            //        byte temp = sevenItems[i * 2 + 1];                
+            //        sevenItems[i * 2 + 1] = sevenItems[i * 2]; 
+            //        sevenItems[i * 2] = temp;
+            //    }
+
+
+            //    for (int i = 0; i < Data.datatest.Length; i++)
+            //        Data.datatest[i] = BitConverter.ToInt16(sevenItems, i * 2);
+            //}
+            //txtData.Text = Convert.ToString(Data.datatest[0]);
+
         }
     }
 }
